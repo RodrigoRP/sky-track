@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#7f3600",
+              "surface-container-low": "#f3f3fb",
+              "on-background": "#1a1b21",
+              "inverse-on-surface": "#f0f0f8",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#ffa777",
+              "tertiary-fixed-dim": "#ffb68f",
+              "error": "#ba1a1a",
+              "surface": "#faf8ff",
+              "surface-container": "#ededf5",
+              "surface-bright": "#faf8ff",
+              "outline": "#737783",
+              "background": "#faf8ff",
+              "primary-fixed": "#d9e2ff",
+              "on-tertiary-fixed-variant": "#773200",
+              "on-tertiary-fixed": "#331200",
+              "on-surface-variant": "#434652",
+              "surface-dim": "#d9d9e1",
+              "tertiary": "#5b2500",
+              "on-secondary-container": "#217128",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#a3f69c",
+              "inverse-surface": "#2e3036",
+              "on-primary-fixed-variant": "#00429c",
+              "on-secondary-fixed": "#002204",
+              "surface-variant": "#e2e2ea",
+              "secondary-container": "#a0f399",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#2b5bb5",
+              "secondary": "#1b6d24",
+              "on-primary-container": "#a1bbff",
+              "on-surface": "#1a1b21",
+              "on-secondary-fixed-variant": "#005312",
+              "outline-variant": "#c3c6d4",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdbca",
+              "primary": "#003178",
+              "surface-container-high": "#e8e7f0",
+              "on-primary-fixed": "#001945",
+              "inverse-primary": "#b0c6ff",
+              "primary-container": "#0d47a1",
+              "secondary-fixed-dim": "#88d982",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#b0c6ff",
+              "surface-container-highest": "#e2e2ea"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tap-highlight-none { -webkit-tap-highlight-color: transparent; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased pb-32">
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 active:scale-95 transition-transform cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-manrope font-bold text-lg tracking-tight text-blue-900 dark:text-blue-100">SkyTrack</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="User profile" data-alt="Close up portrait of a professional woman with a friendly expression in a modern office environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAodJ2xqyeK2CgJrV6UOxo1ZfUJttukIn07Cg2cOnSYpg-qp7NzG8IVADNuJl97NulJ9LgurlNODVXMuJ5G6iRlm96Bmn3CmRoGY7lM_IwXKscqfnwJfDcR8S3CtoYQ8Vv4fz3-P5KdO_e9A7Ka4ysjcUk4_zjQGcClxlc_L0U3Tktt5l5-98rtJ0rsPmgOx57I8iPgOc5MapY8-QlaPI3r417mnO5QigpqIHFRngqrdYEc8Z5CzfnIBgD1a3ENLAOf0EmPiEjUMb8"/>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 h-px w-full opacity-20"></div>
+</header>
+<main class="mt-24 px-6 max-w-lg mx-auto space-y-8">
+<section class="relative bg-surface-container-lowest rounded-3xl p-6 shadow-[0_12px_32px_rgba(26,27,33,0.04)] overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed/20 rounded-full -mr-10 -mt-10 blur-3xl"></div>
+<div class="flex items-center gap-5">
+<div class="relative">
+<img class="w-20 h-20 rounded-2xl object-cover shadow-lg" data-alt="Headshot of a modern executive woman with a sophisticated look, natural lighting, blurred office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZvbt2pv1Le5l6gJLO15S76QdAU9OB4jVe6hmMnUBwA3nwAwFwqRpHmy6mm-ynsFMOUDeP3clgYJG7XM6iX3n-7-ULB8JG3QQkR0sHkj0F1Sn8WGeixoxXiWBo3ZP6vSgEHkOrdjI1CVWZC5FPRCUzDHgS-WMtcQsJLNNYrB0Vg8RxAItlbE1J0Y76LqjwBq4hJb99iDUcBU6_fANWF1eb8sHJLr5bKmR_7GWc3i64AFA3QVYfAHl3XlblS9O4Tt4yIu0LCgjvEec"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary p-1.5 rounded-lg shadow-md flex items-center justify-center">
+<span class="material-symbols-outlined text-xs" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<h2 class="font-headline font-bold text-xl tracking-tight text-on-surface">Elena Rodriguez</h2>
+<p class="text-on-surface-variant text-sm font-medium">elena.r@skytrack.com</p>
+<div class="mt-2 inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold uppercase tracking-wider">
+                        Premium Member
+                    </div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</section>
+<section class="space-y-4">
+<h3 class="font-headline font-extrabold text-sm uppercase tracking-[0.15em] text-outline ml-1">Notification Channels</h3>
+<div class="bg-surface-container-low rounded-3xl overflow-hidden">
+<div class="p-5 flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Push Notifications</p>
+<p class="text-xs text-outline">Real-time flight alerts</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-secondary/5 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">WhatsApp Updates</p>
+<p class="text-xs text-outline">Savings &amp; price drops</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="p-5 flex items-center justify-between bg-surface-container-lowest">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-tertiary/5 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="alternate_email">alternate_email</span>
+</div>
+<div>
+<p class="font-semibold text-on-surface">Email Summaries</p>
+<p class="text-xs text-outline">Weekly travel digest</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 gap-4">
+<h3 class="font-headline font-extrabold text-sm uppercase tracking-[0.15em] text-outline ml-1">Configuration</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-5 rounded-3xl shadow-sm border border-surface-container">
+<p class="text-[10px] font-bold text-outline uppercase tracking-wider mb-3">Currency</p>
+<div class="flex items-center justify-between">
+<span class="font-headline font-bold text-primary">USD ($)</span>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-3xl shadow-sm border border-surface-container">
+<p class="text-[10px] font-bold text-outline uppercase tracking-wider mb-3">Language</p>
+<div class="flex items-center justify-between">
+<span class="font-headline font-bold text-primary">English</span>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+</div>
+</section>
+<section class="space-y-4">
+<h3 class="font-headline font-extrabold text-sm uppercase tracking-[0.15em] text-outline ml-1">Alert Frequency</h3>
+<div class="bg-surface-container-high p-1 rounded-[2rem] flex items-center">
+<button class="flex-1 py-3 px-6 rounded-full bg-white shadow-sm font-bold text-primary transition-all">Real-time</button>
+<button class="flex-1 py-3 px-6 rounded-full font-semibold text-on-surface-variant/70 transition-all">Daily Summary</button>
+</div>
+<p class="text-[11px] text-center text-outline-variant px-6 italic">Real-time alerts ensure you never miss a volatile price drop.</p>
+</section>
+<section class="space-y-4">
+<h3 class="font-headline font-extrabold text-sm uppercase tracking-[0.15em] text-outline ml-1">Travel Preferences</h3>
+<div class="bg-surface-container-lowest rounded-3xl divide-y divide-surface-container-low border border-surface-container-low">
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-bright transition-colors rounded-t-3xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="airline_seat_recline_extra">airline_seat_recline_extra</span>
+<div>
+<p class="font-semibold text-on-surface">Preferred Cabin</p>
+<p class="text-xs text-secondary font-semibold">Business Class</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="loyalty">loyalty</span>
+<div>
+<p class="font-semibold text-on-surface">Frequent Flyer</p>
+<p class="text-xs text-outline">SkyMiles, OneWorld</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="p-5 flex items-center justify-between cursor-pointer hover:bg-surface-bright transition-colors rounded-b-3xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-icon="no_meals">no_meals</span>
+<div>
+<p class="font-semibold text-on-surface">Dietary Req.</p>
+<p class="text-xs text-outline">Vegetarian</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+<div class="pt-4">
+<button class="w-full py-5 rounded-2xl bg-error-container text-on-error-container font-headline font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Sign Out
+            </button>
+<p class="mt-6 text-center text-[10px] font-bold text-outline-variant uppercase tracking-widest">Version 4.2.0 • Build 882</p>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-8px_24px_rgba(0,0,0,0.05)] border-t border-slate-100 dark:border-slate-800">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 tap-highlight-none active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home_max">home_max</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 tap-highlight-none active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="Notifications_active">notifications_active</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 tap-highlight-none active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Activity</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-2xl px-4 py-2 mb-1 tap-highlight-none active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+</body></html>

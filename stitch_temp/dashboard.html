@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#7f3600",
+              "surface-container-low": "#f3f3fb",
+              "on-background": "#1a1b21",
+              "inverse-on-surface": "#f0f0f8",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#ffa777",
+              "tertiary-fixed-dim": "#ffb68f",
+              "error": "#ba1a1a",
+              "surface": "#faf8ff",
+              "surface-container": "#ededf5",
+              "surface-bright": "#faf8ff",
+              "outline": "#737783",
+              "background": "#faf8ff",
+              "primary-fixed": "#d9e2ff",
+              "on-tertiary-fixed-variant": "#773200",
+              "on-tertiary-fixed": "#331200",
+              "on-surface-variant": "#434652",
+              "surface-dim": "#d9d9e1",
+              "tertiary": "#5b2500",
+              "on-secondary-container": "#217128",
+              "on-primary": "#ffffff",
+              "secondary-fixed": "#a3f69c",
+              "inverse-surface": "#2e3036",
+              "on-primary-fixed-variant": "#00429c",
+              "on-secondary-fixed": "#002204",
+              "surface-variant": "#e2e2ea",
+              "secondary-container": "#a0f399",
+              "on-secondary": "#ffffff",
+              "surface-tint": "#2b5bb5",
+              "secondary": "#1b6d24",
+              "on-primary-container": "#a1bbff",
+              "on-surface": "#1a1b21",
+              "on-secondary-fixed-variant": "#005312",
+              "outline-variant": "#c3c6d4",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed": "#ffdbca",
+              "primary": "#003178",
+              "surface-container-high": "#e8e7f0",
+              "on-primary-fixed": "#001945",
+              "inverse-primary": "#b0c6ff",
+              "primary-container": "#0d47a1",
+              "secondary-fixed-dim": "#88d982",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#b0c6ff",
+              "surface-container-highest": "#e2e2ea"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tap-highlight-none { -webkit-tap-highlight-color: transparent; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-blue-900 dark:text-blue-400 active:scale-95 transition-transform cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-manrope font-bold text-lg tracking-tight text-xl font-black text-blue-900 dark:text-blue-100 tracking-tighter">SkyTrack</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed active:scale-95 transition-transform cursor-pointer">
+<img alt="User profile" data-alt="Close-up portrait of a professional man with a friendly expression, soft natural indoor lighting, high-end photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0yHYI7bbFnn7MmlmKjRWiepfUWOGD4oPtdzaExr2w1uGQOztZF6hV319wAhpF5iMqmDpgCjTRYkDW5hUHXo6qRNvACaFoZC98CMYAfUc0AWl_0goxZx5AyoaS_U-GCOQ-npyikbmQkaXdLTYWk-bfFenIvm6YKTW2_d_QXHnXCwZ26w7PUtlzx3TGbRa8kN5kk1_Cn64atTAQpO6nqTB32mBOEyMHiBPdoOSjH18nTRL8sGcwX4LMNbYhncjeuydI3xbMvTSW2xg"/>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 h-px w-full opacity-20"></div>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Hero Search Context -->
+<section class="mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-on-surface tracking-tight mb-2">Monitor Smart.</h2>
+<p class="text-on-surface-variant font-medium leading-relaxed">Your personal flight concierge is tracking 14 potential savings for you.</p>
+<button class="mt-8 w-full bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 px-6 rounded-xl font-headline font-bold text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3 active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                Create New Alert
+            </button>
+</section>
+<!-- My Active Alerts Section -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-headline text-xl font-bold">My Active Alerts</h3>
+<span class="text-primary font-bold text-sm tracking-wide active:opacity-70 transition-opacity">View All</span>
+</div>
+<div class="space-y-4">
+<!-- Alert Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_12px_32px_rgba(26,27,33,0.04)] relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-headline font-extrabold text-lg">NYC</span>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="sync_alt">sync_alt</span>
+<span class="font-headline font-extrabold text-lg">LON</span>
+</div>
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-widest">Oct 12 — Oct 20</p>
+</div>
+<div class="bg-secondary-container/30 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-sm font-bold" data-icon="trending_down">trending_down</span>
+<span class="text-on-secondary-container text-xs font-bold">-$42</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-tighter">Current Best</span>
+<div class="text-3xl font-headline font-black text-primary tracking-tighter">$482</div>
+</div>
+<div class="w-24 h-10 bg-surface-container-highest/50 rounded-lg flex items-center justify-center">
+<!-- Visual placeholder for sparkline graph -->
+<div class="flex items-end gap-1 px-2 h-6">
+<div class="w-1 bg-outline-variant rounded-full h-3"></div>
+<div class="w-1 bg-outline-variant rounded-full h-4"></div>
+<div class="w-1 bg-outline-variant rounded-full h-5"></div>
+<div class="w-1 bg-secondary rounded-full h-2 shadow-[0_0_8px_rgba(27,109,36,0.4)]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-2xl shadow-[0_12px_32px_rgba(26,27,33,0.04)] relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-headline font-extrabold text-lg">SFO</span>
+<span class="material-symbols-outlined text-outline-variant text-sm" data-icon="trending_flat">trending_flat</span>
+<span class="font-headline font-extrabold text-lg">TYO</span>
+</div>
+<p class="text-on-surface-variant text-xs font-semibold uppercase tracking-widest">Flexible Dates</p>
+</div>
+<div class="bg-tertiary-container/10 px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-tertiary text-sm font-bold" data-icon="trending_up">trending_up</span>
+<span class="text-tertiary text-xs font-bold">+$115</span>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="space-y-1">
+<span class="text-on-surface-variant text-[10px] font-bold uppercase tracking-tighter">Current Best</span>
+<div class="text-3xl font-headline font-black text-primary tracking-tighter">$920</div>
+</div>
+<div class="w-24 h-10 bg-surface-container-highest/50 rounded-lg flex items-center justify-center">
+<div class="flex items-end gap-1 px-2 h-6">
+<div class="w-1 bg-outline-variant rounded-full h-5"></div>
+<div class="w-1 bg-outline-variant rounded-full h-4"></div>
+<div class="w-1 bg-outline-variant rounded-full h-3"></div>
+<div class="w-1 bg-tertiary rounded-full h-6 shadow-[0_0_8px_rgba(91,37,0,0.4)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Best Deals Today Section -->
+<section class="mb-6">
+<div class="flex justify-between items-end mb-6">
+<h3 class="font-headline text-xl font-bold">Best Deals Today</h3>
+<span class="text-primary font-bold text-sm tracking-wide">Explore</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Destination Card 1 -->
+<div class="group relative rounded-3xl overflow-hidden h-64 shadow-lg active:scale-95 transition-all">
+<img alt="Paris" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Stunning aerial view of the Eiffel Tower in Paris at sunset with golden orange sky and city lights beginning to glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY4QUTwGjjT6rbeL5yd5aj64jxtCR0nAb5f3jv2B3LecYpTFI2IS7EIaFQp0PpUp9sw7ueR77joxHUNQTFHD95-MxNM4byaHCix8jgaPs5I0VXZr-4OwL5iRZ53M4gZLDOQBWEF5Hh96Y_3tZ5Upx-928OL0VcMJOK6xPu398SVJDMQZMu1DN8kKVMoIDGuc-y9FCcxq3OMsF7WZpkYTJ0y5Gl63M1gBbu1NjgGAL2BdujfLMH1TZY7A1QYcyGbO6siAFgnxmoRBQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="text-white font-headline font-bold text-lg mb-1">Paris</h4>
+<div class="flex items-center justify-between">
+<span class="text-white/80 text-xs font-bold uppercase tracking-widest">From</span>
+<span class="text-white font-black text-xl tracking-tight">$312</span>
+</div>
+</div>
+<div class="absolute top-3 right-3 bg-secondary px-2 py-1 rounded-lg text-[10px] font-black text-white uppercase tracking-widest shadow-lg">
+                        -45% OFF
+                    </div>
+</div>
+<!-- Destination Card 2 -->
+<div class="group relative rounded-3xl overflow-hidden h-64 shadow-lg active:scale-95 transition-all">
+<img alt="Kyoto" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Kyoto traditional street with blooming cherry blossoms and historic wooden buildings under a soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATN_e3pFRv2ds5ikhP56MnTuHu99ceZlbGtNhQsCsTGYn7dxxYHWzhK3TbSDRSpqA9l7aVaN7inPiPcKhiklbHZRwd-18vAlzAUg6KM__mdPBnQNeNbGBw0ipFLzA3W27RIKjbiP-8iOeOE4umnNL2tJbLEF2Bl6sWaUmhe6Xx1lo-8vn_nuxOoz3lEL6IlwzYcpBzYs7XZ3_Ae5MP2vyL97tFpIbJo4Ot2YZRwNz4PO8TjcAf9n2gzOn1jHhFhkJg1YwMlQ9lm60"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h4 class="text-white font-headline font-bold text-lg mb-1">Kyoto</h4>
+<div class="flex items-center justify-between">
+<span class="text-white/80 text-xs font-bold uppercase tracking-widest">From</span>
+<span class="text-white font-black text-xl tracking-tight">$540</span>
+</div>
+</div>
+<div class="absolute top-3 right-3 bg-secondary px-2 py-1 rounded-lg text-[10px] font-black text-white uppercase tracking-widest shadow-lg">
+                        -32% OFF
+                    </div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-8px_24px_rgba(0,0,0,0.05)] z-50 rounded-t-3xl flex justify-around items-center px-4 pb-6 pt-3">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-2xl px-4 py-2 mb-1 transition-all duration-300 active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home_max" style="font-variation-settings: 'FILL' 1;">home_max</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Home</span>
+</a>
+<!-- Alerts -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300 active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="Notifications_active">notifications_active</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Alerts</span>
+</a>
+<!-- Activity -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300 active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Activity</span>
+</a>
+<!-- Settings -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300 active:scale-90 tap-highlight-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-widest">Settings</span>
+</a>
+</nav>
+</body></html>
