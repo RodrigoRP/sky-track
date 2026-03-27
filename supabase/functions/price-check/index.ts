@@ -1,7 +1,7 @@
 /**
  * price-check Edge Function
  *
- * Fetches the current best price for a given alert from the Amadeus API,
+ * Fetches the current best price for a given alert from the Kiwi Tequila API,
  * stores a snapshot, updates the alert row, and returns the new state.
  *
  * Invoked:
@@ -9,7 +9,7 @@
  *  - On a schedule via pg_cron (every 6 hours) for all active alerts
  *
  * Required secrets (set via: supabase secrets set KEY=value):
- *   AMADEUS_CLIENT_ID, AMADEUS_CLIENT_SECRET
+ *   TEQUILA_API_KEY   → from https://tequila.kiwi.com
  */
 
 import { serve } from 'https://deno.land/std@0.208.0/http/server.ts'
@@ -20,46 +20,50 @@ const supabase = createClient(
   Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
 )
 
-// ── Amadeus helpers ──────────────────────────────────────────────────────────
+// ── Kiwi Tequila helpers ──────────────────────────────────────────────────────
 
-async function getAmadeusToken(): Promise<string> {
-  const res = await fetch('https://test.api.amadeus.com/v1/security/oauth2/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'client_credentials',
-      client_id: Deno.env.get('AMADEUS_CLIENT_ID')!,
-      client_secret: Deno.env.get('AMADEUS_CLIENT_SECRET')!,
-    }),
-  })
-  const json = await res.json()
-  return json.access_token
+/** Convert YYYY-MM-DD → DD/MM/YYYY (Tequila date format) */
+function toTequilaDate(yyyyMmDd: string): string {
+  const [y, m, d] = yyyyMmDd.split('-')
+  return `${d}/${m}/${y}`
+}
+
+/** Last day of a YYYY-MM month as YYYY-MM-DD */
+function lastDayOfMonth(yyyyMm: string): string {
+  const [y, m] = yyyyMm.split('-').map(Number)
+  const last = new Date(y, m, 0).getDate()
+  return `${y}-${String(m).padStart(2, '0')}-${String(last).padStart(2, '0')}`
 }
 
 /**
- * Derives a YYYY-MM-DD departure date from the alert row.
+ * Returns a [dateFrom, dateTo] window for the Tequila API search.
  *
  * Priority:
- * 1. `departure_month` (canonical YYYY-MM stored by CreateAlert) — most reliable.
- * 2. Free-text `dates` string — fallback for legacy alerts created before departure_month existed.
+ * 1. `departure_month` (YYYY-MM) — search the full calendar month.
+ * 2. Free-text `dates` — use parsed date ±7 days as window.
  */
-function getDepartureDate(alert: {
+function getDepartureDateRange(alert: {
   departure_month?: string | null
   dates: string
-}): string {
+}): [string, string] {
   if (alert.departure_month) {
-    return departureDateFromMonth(alert.departure_month)
+    const yyyyMm = alert.departure_month
+    const [yearStr, month] = yyyyMm.split('-')
+    const year = parseInt(yearStr, 10)
+    const firstDay = `${year}-${month}-01`
+    // Advance to next year if the month has already passed
+    if (new Date(firstDay) < new Date()) {
+      const nextYear = `${year + 1}-${month}-01`
+      return [nextYear, lastDayOfMonth(`${year + 1}-${month}`)]
+    }
+    return [firstDay, lastDayOfMonth(yyyyMm)]
   }
-  return parseDepartureDateFromText(alert.dates)
-}
-
-/** Convert YYYY-MM → YYYY-MM-15 (mid-month representative date). Advances to next year if past. */
-function departureDateFromMonth(yyyyMm: string): string {
-  const [yearStr, month] = yyyyMm.split('-')
-  const year = parseInt(yearStr, 10)
-  const candidate = `${year}-${month}-15`
-  if (new Date(candidate) < new Date()) return `${year + 1}-${month}-15`
-  return candidate
+  const mid = parseDepartureDateFromText(alert.dates)
+  const from = new Date(mid)
+  const to = new Date(mid)
+  from.setDate(from.getDate() - 7)
+  to.setDate(to.getDate() + 7)
+  return [from.toISOString().split('T')[0], to.toISOString().split('T')[0]]
 }
 
 /**
@@ -95,28 +99,31 @@ function parseDepartureDateFromText(dates: string): string {
 async function fetchBestPrice(
   origin: string,
   destination: string,
-  departureDate: string,
-  token: string
+  dateFrom: string,   // YYYY-MM-DD
+  dateTo: string,     // YYYY-MM-DD
+  apiKey: string
 ): Promise<number | null> {
-  const url = new URL('https://test.api.amadeus.com/v2/shopping/flight-offers')
-  url.searchParams.set('originLocationCode', origin)
-  url.searchParams.set('destinationLocationCode', destination)
-  url.searchParams.set('departureDate', departureDate)
+  const url = new URL('https://api.tequila.kiwi.com/v2/search')
+  url.searchParams.set('fly_from', origin)
+  url.searchParams.set('fly_to', destination)
+  url.searchParams.set('date_from', toTequilaDate(dateFrom))
+  url.searchParams.set('date_to', toTequilaDate(dateTo))
   url.searchParams.set('adults', '1')
-  url.searchParams.set('max', '5')
-  url.searchParams.set('currencyCode', 'USD')
+  url.searchParams.set('limit', '5')
+  url.searchParams.set('curr', 'USD')
+  url.searchParams.set('sort', 'price')
+  url.searchParams.set('asc_or_desc', 'asc')
 
   const res = await fetch(url.toString(), {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { apikey: apiKey },
   })
   if (!res.ok) return null
 
   const json = await res.json()
-  const offers: Array<{ price: { grandTotal: string } }> = json.data ?? []
-  if (!offers.length) return null
+  const flights: Array<{ price: number }> = json.data ?? []
+  if (!flights.length) return null
 
-  const prices = offers.map((o) => parseFloat(o.price.grandTotal))
-  return Math.min(...prices)
+  return Math.min(...flights.map((f) => f.price))
 }
 
 // ── Trend calculation ─────────────────────────────────────────────────────────
@@ -179,16 +186,15 @@ serve(async (req) => {
       date: new Date(s.checked_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
     }))
 
-    // Determine departure date — prefer canonical departure_month over free-text dates
-    const departureDate = getDepartureDate(alert)
+    // Determine departure date range for Tequila search
+    const [dateFrom, dateTo] = getDepartureDateRange(alert)
 
-    // Fetch live price from Amadeus (falls back to simulated if API not configured)
+    // Fetch live price from Kiwi Tequila (falls back to simulated if API not configured)
     let currentPrice: number
-    const clientId = Deno.env.get('AMADEUS_CLIENT_ID')
+    const tequilaKey = Deno.env.get('TEQUILA_API_KEY')
 
-    if (clientId) {
-      const token = await getAmadeusToken()
-      const livePrice = await fetchBestPrice(alert.origin, alert.destination, departureDate, token)
+    if (tequilaKey) {
+      const livePrice = await fetchBestPrice(alert.origin, alert.destination, dateFrom, dateTo, tequilaKey)
       currentPrice = livePrice ?? alert.current_price ?? alert.target_price + 50
     } else {
       // Simulated price movement (±5%) for development

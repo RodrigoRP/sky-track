@@ -510,3 +510,36 @@ App de alertas de preço de voos. Stack: **React + Vite + Tailwind CSS** (PWA mo
 - [x] Atualizar contagem de testes: 35 → 39
 - [x] Adicionar `useAuth.test.js` na listagem de arquivos de teste
 - [x] Revisar seção de backlog (Posthog, Sentry)
+
+---
+
+## Bloco H — Validação de Produto ⬜
+> Objetivo: sair do modo protótipo e validar o produto com usuários reais.
+
+## Etapa 55 — API real de preços de voos ✅
+> Sem dados reais o app não entrega valor — é o desbloqueador principal da validação.
+
+- [x] Provedor escolhido: **Kiwi Tequila API** (apikey estática, sem OAuth2)
+- [x] Adaptar Edge Function `price-check` para chamar `api.tequila.kiwi.com/v2/search`
+- [x] `getDepartureDateRange` retorna janela completa do mês (departure_month) ou ±7 dias (free-text)
+- [x] Conversão de datas YYYY-MM-DD → DD/MM/YYYY (formato Tequila)
+- [x] Fallback gracioso para simulação quando `TEQUILA_API_KEY` não configurada
+- [ ] Configurar secret `TEQUILA_API_KEY` no Supabase e testar com rotas reais (GRU→LIS, GRU→MIA)
+
+## Etapa 56 — Beta fechado: cadastro e coleta de feedback ⬜
+> Validar se o produto resolve um problema real antes de investir mais.
+
+- [ ] Definir critérios do beta: 10-20 usuários, período de 2-4 semanas
+- [ ] Criar lista de espera simples (Tally, Typeform ou página estática)
+- [ ] Preparar roteiro de entrevista: "qual rota você mais monitora?", "quando você reservaria?"
+- [ ] Configurar canal de feedback (WhatsApp group, Discord ou email direto)
+- [ ] Acompanhar métricas básicas: alertas criados, usuários ativos, conversão para premium
+
+## Etapa 57 — Domínio customizado ⬜ [BACKLOG]
+> URL profissional aumenta credibilidade com usuários beta e investidores.
+
+- [ ] Registrar domínio (sugestão: `skytrack.app` ou `getskytrack.com`)
+- [ ] Configurar domínio no Vercel (Project → Domains → Add)
+- [ ] Atualizar `APP_URL` nos secrets do Supabase
+- [ ] Atualizar endpoint do webhook no Stripe Dashboard
+- [ ] Atualizar `README.md` com a nova URL de produção
